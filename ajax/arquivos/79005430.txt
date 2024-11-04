@@ -1,0 +1,1 @@
+{"bairro":"Amamba\u00ed","cep":"79005430","rua":"Rua dos Barbosas","cidade":"Campo Grande","numero":"4343","estado":"Mato Grosso do Sul"}
