@@ -1,4 +1,5 @@
 <?php
+/*// Responsavel por comunicar as pastas View e DAL e de gerenciar as regras de dados*/
 
 require_once("DAL/UsuarioDAO.php");
 

@@ -1,18 +1,21 @@
 <?php
+//CAMADA DE COMUNICACAO COM A BASE DE DADOS:
 
-require_once("Model/Usuario.php");
+require_once("Model/Usuario.php"); // ACESSO AO USUARIO.php
 
-class UsuarioDAO {
+class UsuarioDAO
+{
 
     private $debug = true;
     private $dir = "Arquivos";
 
-    public function Cadastrar(Usuario $usuario) {
+    public function Cadastrar(Usuario $usuario)
+    { //Passando como parametro a classe Usuario presente no arqv. Usuario.php
         try {
             $fileName = $usuario->getEmail() . ".txt";
             if (!$this->VerificaArquivoExiste($fileName)) {
                 //Faz o cadastro
-                $diretorioCompleto = $this->dir . "/" . $fileName; //Diretório completo
+                $diretorioCompleto = $this->dir . "/" . $fileName; //Arquivos/$fileName -> Diretorio completo
                 $fopen = fopen($diretorioCompleto, "w");
 
                 $str = "{$usuario->getNome()};{$usuario->getEmail()};{$usuario->getSenha()};{$usuario->getData()}";
@@ -26,23 +29,24 @@ class UsuarioDAO {
             } else {
                 return -1; //Usuário já cadastrado
             }
-        } catch (Exception $ex) {
-            if ($this->debug) {
+        } catch (Exception $ex) { //$ex esta referenciando a classe Exception
+            if ($this->debug) { // debug é decodificar/analisar o codigo
                 echo $ex->getMessage();
             }
         }
     }
 
-    public function Autenticar(string $email, string $senha) {
+    public function Autenticar(string $email, string $senha)
+    {
 
         $fileName = "{$email}.txt";
 
         if ($this->VerificaArquivoExiste($fileName)) {
-        
+
             $usuario = $this->RetornarUsuario($fileName);
-               echo $usuario->getSenha() . "-" . md5($senha);
-            if($usuario->getSenha() == md5($senha)) {
-             
+            echo $usuario->getSenha() . "-" . md5($senha);
+            if ($usuario->getSenha() == md5($senha)) {
+
                 return $usuario;
             } else {
                 return null;
@@ -52,7 +56,8 @@ class UsuarioDAO {
         }
     }
 
-    public function RetornarUsuario(string $email) {
+    public function RetornarUsuario(string $email)
+    {
         if ($this->VerificaArquivoExiste($email)) {
 
             $diretorioCompleto = $this->dir . "/" . $email; //Diretório completo
@@ -69,14 +74,15 @@ class UsuarioDAO {
             $usuario->setData($arr[3]);
 
             fclose($fopen);
-            
+
             return $usuario;
         } else {
             return null;
         }
     }
 
-    private function VerificaArquivoExiste(string $nomeArquivo) {
+    private function VerificaArquivoExiste(string $nomeArquivo)
+    {
         $diretorioCompleto = $this->dir . "/" . $nomeArquivo;
         //file_exists = Verificar se um diretório existe
         if (file_exists($diretorioCompleto)) {

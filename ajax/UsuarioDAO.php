@@ -15,7 +15,7 @@ try {
     $cadastro = $cep . ".txt";
     if (!file_exists($cadastro)) {
         //Faz o cadastro
-        $diretorioCompleto = "arquivos/" . $cadastro; //Diretório completo
+        $diretorioCompleto = "Arquivos/" . $cadastro; //Diretório completo
         $fopen = fopen($diretorioCompleto, "a+");
         $str = json_encode($arrDados);
 

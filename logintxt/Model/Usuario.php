@@ -2,7 +2,7 @@
 
 class Usuario {
 
-    private $nome;
+    private $nome;  //a variável é um atributo
     private $email;
     private $senha;
     private $data;
@@ -10,7 +10,7 @@ class Usuario {
     //set = Atribuir
     //get = Obter
 
-    public function setNome($nome) {
+    public function setNome($nome) {  //Function é um Método
         $this->nome = $nome;
     }
 
