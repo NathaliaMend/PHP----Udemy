@@ -43,8 +43,7 @@ class UsuarioDAO
 
         if ($this->VerificaArquivoExiste($fileName)) {
 
-            $usuario = $this->RetornarUsuario($fileName);
-            echo $usuario->getSenha() . "-" . md5($senha);
+            $usuario = $this->RetornarUsuario($fileName);            
             if ($usuario->getSenha() == md5($senha)) {
 
                 return $usuario;
